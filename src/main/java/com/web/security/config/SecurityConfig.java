@@ -21,6 +21,16 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 );
 
+        http
+                .formLogin((auth) -> auth.loginPage("/login")
+                        .loginProcessingUrl("/login") // Form(action)값을 입력 자동로그인 기능
+                        .permitAll()
+                );
+
+        http
+                .csrf((auth) -> auth.disable());
+
+
         return http.build();
     }
 }
